@@ -1,0 +1,12 @@
+#!/bin/sh
+
+tmpdir="${XDG_RUNTIME_DIR:-/tmp/$(id -u)}"
+dsock="$tmpdir/nvrs.dtach.sock"
+export NVIM_LISTEN_ADDRESS="$tmpdir/nvrs.nvim.sock"
+
+mkdir -p "$tmpdir"
+dtach -n "$dsock" nvim \
+-c 'cnoremap q<CR> bdelete<CR>' \
+-c 'cnoremap wq<CR> w | bdelete<CR>' \
+-c 'cnoremap x<CR> w | bdelete<CR>'
+# TODO: :xa, ZZ

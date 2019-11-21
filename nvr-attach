@@ -1,0 +1,2 @@
+#!/bin/sh
+dtach -a "${XDG_RUNTIME_DIR:-/tmp/$(id -u)}/nvrs.dtach.sock"

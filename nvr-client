@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from nvr.nvr import main
+
+def except_handler(_etype, _e, _trace):
+    pass
+
+sys.backtracelimit = 0
+sys.excepthook = except_handler
+
+if argv[1] == '-h' or argv[1] == '--help':
+    print(
+        'Usage: {} [ FILES .. ]'.format(argv[0]),
+        '',
+        'Sends files to nvr server with --remote-tab-silent',
+        sep='\n'
+    )
+    sys.exit(1)
+
+if __name__ == '__main__':
+    sys.exit(main(
+        argv=([re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])]
+              + ['-s', '-c', 'doautocmd BufEnter', '--remote-tab-wait']
+              + sys.argv[1:])
+     ))
