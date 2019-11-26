@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -d "$HOME/.local/bin" ] && export PATH="$PATH:$HOME/.local/bin"
 tmpdir="${XDG_RUNTIME_DIR:-/tmp/$(id -u)}"
 dsock="$tmpdir/nvrs.dtach.sock"
 export NVIM_LISTEN_ADDRESS="$tmpdir/nvrs.nvim.sock"
